@@ -10,9 +10,11 @@ import 'package:open_music/screen/utils/Progress.dart';
 import 'package:provider/provider.dart';
 import '../data/api/ApiService.dart';
 import '../model/Creator.dart';
+import 'music/MiniPlayer.dart';
 import 'music/MusicList.dart';
 import 'music/Player.dart';
-import 'music/Track.dart';
+import 'music/PlayerManager.dart';
+import 'music/Tracks.dart';
 import 'utils/Image.dart';
 import 'utils/Title.dart';
 
@@ -69,55 +71,20 @@ class _MyHomePageState extends State<MyHomePage> {
             ).toList(),
           ),
         ),
-        body:TabBarView(
+        body:Stack(
           children: [
-            ValueListenableBuilder(
-                valueListenable: StorageService.favoriteChange,
-                builder: (ctx,value,widget)=>Track(key:value?UniqueKey():UniqueKey(),getAllMusic: StorageService.getAllFavoriteMusic)
+            TabBarView(
+              children: [
+                ValueListenableBuilder(
+                    valueListenable: StorageService.favoriteChange,
+                    builder: (ctx,value,widget)=>Track(key:value?UniqueKey():UniqueKey(),getAllMusic: StorageService.getAllFavoriteMusic)
+                ),
+                Track(getAllMusic: APIService.getAllMusic,),
+                _Artist(),
+              ],
             ),
-            Track(getAllMusic: APIService.getAllMusic,),
-            _Artist(),
-          ],
-        ),
-        floatingActionButton: FractionallySizedBox(
-          widthFactor: appState.getPlayerManager()!=null? 0.9 : 0,
-          child: FloatingActionButton(
-            shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-            onPressed: (){
-             Navigator.push(
-               context,
-               MaterialPageRoute(builder: (ctx) {
-                 return Player(playerManager: appState.getPlayerManager()!,);
-               }),
-             );
-            },
-            child: Visibility(
-              visible: appState.getPlayerManager()!=null,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 70,
-                    height: 70,
-                    child: Card(
-                      shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-                      color: Colors.grey,
-                      child: ShowNetWorkImage(thumbnail: appState.getPlayerManager()?.getCurrentMusic().thumbnail??'',),
-                    ),
-                  ),
-                  SizedBox(
-                    width: (MediaQuery.of(context).size.width*90)/100-70,
-                    child: OverflowTitle(
-                      text: appState.getPlayerManager()?.getCurrentMusic().title??"",
-                      musicTitleStyle: TextStyle(
-                          fontSize: 16
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+            MiniPlayer(appState: appState),
+          ]
         ),
       ),
     );
@@ -187,7 +154,6 @@ class _ArtistState extends State<_Artist> {
                   crossAxisSpacing: 10,
                   scrollDirection: Axis.vertical,
                   physics: NeverScrollableScrollPhysics(),
-                  childAspectRatio: 0.49,
                   children:snapshot.data!.map((creator) =>  ElevatedButton(
                       style : ElevatedButton.styleFrom(
                           minimumSize: Size(MediaQuery.of(context).size.width/2-10, MediaQuery.of(context).size.height/2),
@@ -204,10 +170,13 @@ class _ArtistState extends State<_Artist> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width/2-10,
-                            height: MediaQuery.of(context).size.height/2-60,
-                            child: ShowNetWorkImage(thumbnail: creator.thumbnail ,),
+                          Flexible(
+                              flex: 1000,
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width/2-10,
+                                height: MediaQuery.of(context).size.height/2,
+                                child: ShowNetWorkImage(thumbnail: creator.thumbnail ,),
+                              )
                           ),
                           SizedBox(
                             height: 30,

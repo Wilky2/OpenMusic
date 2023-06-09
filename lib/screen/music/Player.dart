@@ -70,8 +70,8 @@ class _PlayerState extends State<Player> {
               margin: EdgeInsets.all(20),
               child: Column(
                 children: [
-                  ShowNetWorkImage(thumbnail: value.music.thumbnail),
-                  Spacer(),
+                  Flexible(flex: 1000,child: ShowNetWorkImage(thumbnail: value.music.thumbnail)),
+                  Spacer(flex: 100,),
                   Center(
                     child: OverflowTitle(text: value.music.title),
                   ),
@@ -83,7 +83,7 @@ class _PlayerState extends State<Player> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Spacer(),
+                  Spacer(flex: 200,),
                   Visibility(
                     visible: _isShowSlider,
                     child: Slider(
@@ -115,27 +115,7 @@ class _PlayerState extends State<Player> {
                     ],
                   ),
                   _PlayProgressBar(playerManager: widget.playerManager),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      _ShuffleBtn(playerManager: widget.playerManager),
-                      Spacer(),
-                      IconButton(
-                        onPressed: widget.playerManager.seekToPrevious,
-                        icon: Icon(Icons.skip_previous),
-                      ),
-                      Spacer(),
-                      _PlayBtn(playerManager: widget.playerManager),
-                      Spacer(),
-                      IconButton(
-                        onPressed: widget.playerManager.seekToNext,
-                        icon: Icon(Icons.skip_next),
-                      ),
-                      Spacer(),
-                      _LoopModeBtn(playerManager: widget.playerManager),
-                    ],
-                  )
+                  MusicControl(playerManager: widget.playerManager,)
                 ],
               ),
             );
@@ -188,6 +168,39 @@ class _PlayerState extends State<Player> {
 
 }
 
+class MusicControl extends StatelessWidget {
+  const MusicControl({
+    super.key, required this.playerManager,
+  });
+
+  final PlayerManager playerManager;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        ShuffleBtn(playerManager: playerManager),
+        Spacer(),
+        IconButton(
+          onPressed: playerManager.seekToPrevious,
+          icon: Icon(Icons.skip_previous),
+        ),
+        Spacer(),
+        PlayBtn(playerManager: playerManager),
+        Spacer(),
+        IconButton(
+          onPressed: playerManager.seekToNext,
+          icon: Icon(Icons.skip_next),
+        ),
+        Spacer(),
+        LoopModeBtn(playerManager: playerManager),
+      ],
+    );
+  }
+}
+
 class _PlayProgressBar extends StatelessWidget {
   const _PlayProgressBar({
     required PlayerManager playerManager,
@@ -211,9 +224,9 @@ class _PlayProgressBar extends StatelessWidget {
   }
 }
 
-class _PlayBtn extends StatelessWidget {
+class PlayBtn extends StatelessWidget {
 
-  const _PlayBtn({
+  const PlayBtn({
     required PlayerManager playerManager,
   }) : _playerManager = playerManager;
 
@@ -250,9 +263,9 @@ class _PlayBtn extends StatelessWidget {
   }
 }
 
-class _LoopModeBtn extends StatelessWidget {
+class LoopModeBtn extends StatelessWidget {
 
-  const _LoopModeBtn({
+  const LoopModeBtn({
     required PlayerManager playerManager,
   }) : _playerManager = playerManager;
 
@@ -288,9 +301,9 @@ class _LoopModeBtn extends StatelessWidget {
   }
 }
 
-class _ShuffleBtn extends StatelessWidget {
+class ShuffleBtn extends StatelessWidget {
 
-  const _ShuffleBtn({
+  const ShuffleBtn({
     required PlayerManager playerManager,
   }) : _playerManager = playerManager;
 

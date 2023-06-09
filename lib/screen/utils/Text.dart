@@ -15,4 +15,7 @@ class AppText{
   static const String English = "English";
   static const String Creole = "Creole";
   static const String Close = "Close";
+  static const String Search = "Search";
+  static const String Enteryoursearchquery = "Enter your search query";
+  static const String Cancel = "Cancel";
 }

@@ -1,8 +1,11 @@
 
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:open_music/data/api/ApiService.dart';
 import 'package:open_music/screen/music/MusicList.dart';
+
+import '../utils/Text.dart';
 
 class SearchMusic extends StatelessWidget {
   final TextEditingController _searchController = TextEditingController();
@@ -10,22 +13,22 @@ class SearchMusic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Search'),
+      title: Text(AppText.Search).tr(),
       content: TextField(
         controller: _searchController,
         decoration: InputDecoration(
-          hintText: 'Enter your search query',
+          hintText: AppText.Enteryoursearchquery.tr(),
         ),
       ),
       actions: [
         TextButton(
-          child: Text('Cancel'),
+          child: Text(AppText.Cancel).tr(),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         ElevatedButton(
-          child: Text('Search'),
+          child: Text(AppText.Search).tr(),
           onPressed: () {
             String query = _searchController.text;
             Navigator.pop(context);

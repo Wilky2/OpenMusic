@@ -44,4 +44,8 @@ class APIService {
     return Music.fromJsonList(response.body);
   }
 
+  static void setBrightness(String brightness){
+
+  }
+
 }

@@ -7,7 +7,7 @@ import '../main.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  State createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
@@ -133,9 +133,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 DropdownButton(
                   value: _selectedLanguage,
                   onChanged: (newValue) {
-                    setState(() {
+                    setState(() async{
                       _selectedLanguage = newValue!;
-                      context.setLocale(_selectedLanguage == AppText.English ? Locale("en"):Locale("ht"));
+                      await context.setLocale(_selectedLanguage == AppText.English ? Locale("en"):Locale("ht"));
+                      appState.setLanguage(context.locale);
                     });
                   },
                   items: _languages.map((language) {
@@ -163,7 +164,7 @@ class _SettingsPageState extends State<SettingsPage> {
               onChanged: (newValue) {
                 setState(() {
                   _isDarkMode = newValue;
-                  appState.setBrightnessMode(brightnessMode:_isDarkMode? Brightness.dark:Brightness.light);
+                  appState.setBrightnessMode(_isDarkMode? Brightness.dark:Brightness.light);
                 });
               },
             ),
