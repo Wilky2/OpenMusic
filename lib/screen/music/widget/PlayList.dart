@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:open_music/main.dart';
-import 'package:open_music/screen/utils/Image.dart';
-import 'package:open_music/screen/utils/Progress.dart';
-import 'package:open_music/screen/utils/Title.dart';
-import 'package:provider/provider.dart';
-import '../../model/Music.dart';
-import '../utils/Error.dart';
-import 'Player.dart';
-import 'PlayerManager.dart';
+import '../../../model/Music.dart';
+import '../../../utils/Error.dart';
+import '../../../utils/Image.dart';
+import '../../../utils/Progress.dart';
+import '../../../utils/Title.dart';
+import '../Player.dart';
+import '../Services/PlayerManager.dart';
 
 class PlayList extends StatefulWidget {
 
@@ -41,7 +39,6 @@ class _PlayListState extends State<PlayList> {
 
   @override
   Widget build(BuildContext context) {
-    final appState  = context.watch<MyAppState>();
     return FutureBuilder<List<Music>>(
         key: _playListKey,
         future: musicList,
@@ -62,7 +59,6 @@ class _PlayListState extends State<PlayList> {
                                 shape : ContinuousRectangleBorder(borderRadius: BorderRadius.circular(5.0))
                             ),
                             onPressed: (){
-                              appState.getPlayerManager()?.dispose();
                               _playerManager.init(data.indexOf(music));
                               Navigator.push(
                                 context,
@@ -87,7 +83,7 @@ class _PlayListState extends State<PlayList> {
                                   width: MediaQuery.of(context).size.width-70,
                                   child: OverflowTitle(
                                     text: music.title,
-                                    musicTitleStyle: TextStyle(
+                                    titleStyle: TextStyle(
                                         fontSize: 16
                                     ),
                                   ),

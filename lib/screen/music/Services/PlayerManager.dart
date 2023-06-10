@@ -1,8 +1,11 @@
+import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import '../../model/Music.dart';
+import 'package:just_audio_background/just_audio_background.dart';
+import '../../../model/Music.dart';
+import 'ServiceLocator.dart';
 
-class PlayerManager {
+class PlayerManager{
   final List<Music> musicList;
   final progressNotifier = ValueNotifier<ProgressBarState>(ProgressBarState(current: Duration.zero, buffered: Duration.zero, total: Duration.zero,),);
   final playingButtonNotifier = ValueNotifier<PlayingButtonState>(PlayingButtonState.playing);
@@ -15,20 +18,26 @@ class PlayerManager {
 
   PlayerManager({required this.musicList}){
     _playList = _createPlayList();
-    _audioPlayer = AudioPlayer();
+    _audioPlayer = getIt<AudioPlayer>();
   }
 
   ConcatenatingAudioSource _createPlayList() {
+    final audioSources = musicList.map((music) => AudioSource.uri(
+        Uri.parse(music.url),
+        tag:MediaItem(id: music.id, title: music.title)
+      )
+    ).toList();
     return ConcatenatingAudioSource(
       useLazyPreparation: true,
       shuffleOrder: DefaultShuffleOrder(),
-      children: musicList.map((music) => AudioSource.uri(Uri.parse(music.url))).toList(),
+      children: audioSources,
     );
   }
 
-  void init(int initialIndex){
+  void init(int initialIndex) async{
+    _audioPlayer.stop();
     _audioPlayer.setAudioSource(_playList,initialIndex: initialIndex,initialPosition: Duration.zero);
-    _audioPlayer.play();
+    play();
     _setPlayerStateListener();
     _setPositionStreamListener();
     _setBufferedListener();
@@ -136,9 +145,6 @@ class PlayerManager {
   }
   void pause() {
     _audioPlayer.pause();
-  }
-  void dispose() {
-    _audioPlayer.dispose();
   }
 
   void setVolume(double volume){

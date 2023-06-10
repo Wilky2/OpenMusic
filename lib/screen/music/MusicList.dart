@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:open_music/main.dart';
-import 'package:open_music/screen/music/MiniPlayer.dart';
-import 'package:open_music/screen/music/Tracks.dart';
+import 'package:open_music/screen/music/widget/MiniPlayer.dart';
+import 'package:open_music/screen/music/widget/Tracks.dart';
 import 'package:provider/provider.dart';
+import '../../MyAppState.dart';
 import '../../model/Music.dart';
-import '../utils/Image.dart';
-import '../utils/Title.dart';
-import 'Player.dart';
 
 class MusicList extends StatelessWidget{
   final Future<List<Music>> Function() getAllMusic;

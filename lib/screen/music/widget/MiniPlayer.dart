@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../main.dart';
-import '../utils/Image.dart';
-import '../utils/Title.dart';
-import 'Player.dart';
-import 'PlayerManager.dart';
+import '../../../MyAppState.dart';
+import '../../../utils/Image.dart';
+import '../../../utils/Title.dart';
+import '../Player.dart';
+import '../Services/PlayerManager.dart';
+import 'MusicControl.dart';
 
 class MiniPlayer extends StatelessWidget {
   const MiniPlayer({
@@ -55,7 +56,7 @@ class MiniPlayer extends StatelessWidget {
                             children: [
                               OverflowTitle(
                                 text: value.music.title,
-                                musicTitleStyle: TextStyle(
+                                titleStyle: TextStyle(
                                     fontSize: 16
                                 ),
                               ),

@@ -32,6 +32,8 @@ class ShowNetWorkImage extends StatelessWidget {
           );
         },
         errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+          print(exception);
+          print(stackTrace);
           return Image.asset(
             "assets/image/audio.webp",
             fit: BoxFit.cover,

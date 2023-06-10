@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class HTLocalizationsDelegate extends LocalizationsDelegate<MaterialLocalizations> {
-  const HTLocalizationsDelegate();
+class HTMaterialLocalizationsDelegate extends LocalizationsDelegate<MaterialLocalizations> {
+  const HTMaterialLocalizationsDelegate();
   @override
   bool isSupported(Locale locale) {
     return locale == const Locale('ht');
@@ -14,7 +14,7 @@ class HTLocalizationsDelegate extends LocalizationsDelegate<MaterialLocalization
     return SynchronousFuture<MaterialLocalizations>(HTLocalizations());
   }
   @override
-  bool shouldReload(HTLocalizationsDelegate old) => false;
+  bool shouldReload(HTMaterialLocalizationsDelegate old) => false;
 }
 
 class HTLocalizations extends MaterialLocalizations {
@@ -526,8 +526,8 @@ class HTLocalizations extends MaterialLocalizations {
   }
 }
 
-class HTLocalizationsDelegateC extends LocalizationsDelegate<CupertinoLocalizations> {
-  const HTLocalizationsDelegateC();
+class HTCupertinoLocalizationsDelegate extends LocalizationsDelegate<CupertinoLocalizations> {
+  const HTCupertinoLocalizationsDelegate();
   @override
   bool isSupported(Locale locale) {
     return locale == const Locale('ht');
@@ -535,14 +535,14 @@ class HTLocalizationsDelegateC extends LocalizationsDelegate<CupertinoLocalizati
   @override
   Future<CupertinoLocalizations> load(Locale locale) {
     assert(locale == const Locale('ht'));
-    return SynchronousFuture<CupertinoLocalizations>(HTLocalizationsC());
+    return SynchronousFuture<CupertinoLocalizations>(HTCupertinoLocalizations());
   }
   @override
-  bool shouldReload(HTLocalizationsDelegateC old) => false;
+  bool shouldReload(HTCupertinoLocalizationsDelegate old) => false;
 }
 
-class HTLocalizationsC extends CupertinoLocalizations {
-  HTLocalizationsC();
+class HTCupertinoLocalizations extends CupertinoLocalizations {
+  HTCupertinoLocalizations();
 
 
 

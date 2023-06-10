@@ -1,11 +1,9 @@
-
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:open_music/data/api/ApiService.dart';
 import 'package:open_music/screen/music/MusicList.dart';
 
-import '../utils/Text.dart';
+import '../../../utils/Text.dart';
 
 class SearchMusic extends StatelessWidget {
   final TextEditingController _searchController = TextEditingController();

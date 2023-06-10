@@ -9,6 +9,7 @@ class ShowError extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    print(error);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -17,7 +18,6 @@ class ShowError extends StatelessWidget{
           SizedBox(height: 10),
           ElevatedButton(
             onPressed: (){
-              print(error);
               reload();
             },
             child: Text("Retry"),

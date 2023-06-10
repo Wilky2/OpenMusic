@@ -18,7 +18,7 @@ packages:
     source: hosted
     version: "2.11.0"
   audio_service:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: audio_service
       sha256: "8b719ac7982fdea1a54a528f19e345907295489c53709ba4cdee65a2955c0f4d"
@@ -189,6 +189,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      sha256: "529de303c739fca98cd7ece5fca500d8ff89649f1bb4b4e94fb20954abcd7468"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.6.0"
   http:
     dependency: "direct main"
     description:

@@ -46,7 +46,8 @@ dependencies:
   url_launcher: ^6.1.11
   easy_localization: ^3.0.2
   localstorage: ^4.0.1+2
-  audio_service: ^0.18.10
+  get_it: ^7.6.0
+
 
 dev_dependencies:
   flutter_test:

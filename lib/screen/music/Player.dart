@@ -1,18 +1,17 @@
 import 'dart:async';
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:open_music/data/local/Storage.dart';
-import 'package:open_music/screen/utils/Error.dart';
-import 'package:open_music/screen/utils/Text.dart';
-import 'package:open_music/main.dart';
+import 'package:open_music/screen/music/widget/FavoriteButton.dart';
+import 'package:open_music/screen/music/widget/MusicControl.dart';
+import 'package:open_music/screen/music/widget/PlayProgressBar.dart';
+import 'package:open_music/screen/music/widget/SpeedButton.dart';
+import 'package:open_music/utils/Text.dart';
 import 'package:open_music/screen/music/AboutPage.dart';
 import 'package:provider/provider.dart';
-import '../../model/Music.dart';
-import '../utils/Image.dart';
-import '../utils/Title.dart';
-import 'PlayerManager.dart';
+import '../../MyAppState.dart';
+import 'package:open_music/utils/Image.dart';
+import 'package:open_music/utils/Title.dart';
+import 'Services/PlayerManager.dart';
 
 class Player extends StatefulWidget {
   final PlayerManager playerManager;
@@ -111,10 +110,10 @@ class _PlayerState extends State<Player> {
                       Spacer(),
                       FavoriteButton(music: value.music),
                       Spacer(),
-                      _SpeedButton(playerManager: widget.playerManager),
+                      SpeedButton(playerManager: widget.playerManager),
                     ],
                   ),
-                  _PlayProgressBar(playerManager: widget.playerManager),
+                  PlayProgressBar(playerManager: widget.playerManager),
                   MusicControl(playerManager: widget.playerManager,)
                 ],
               ),
@@ -168,274 +167,4 @@ class _PlayerState extends State<Player> {
 
 }
 
-class MusicControl extends StatelessWidget {
-  const MusicControl({
-    super.key, required this.playerManager,
-  });
 
-  final PlayerManager playerManager;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ShuffleBtn(playerManager: playerManager),
-        Spacer(),
-        IconButton(
-          onPressed: playerManager.seekToPrevious,
-          icon: Icon(Icons.skip_previous),
-        ),
-        Spacer(),
-        PlayBtn(playerManager: playerManager),
-        Spacer(),
-        IconButton(
-          onPressed: playerManager.seekToNext,
-          icon: Icon(Icons.skip_next),
-        ),
-        Spacer(),
-        LoopModeBtn(playerManager: playerManager),
-      ],
-    );
-  }
-}
-
-class _PlayProgressBar extends StatelessWidget {
-  const _PlayProgressBar({
-    required PlayerManager playerManager,
-  }) : _playerManager = playerManager;
-
-  final PlayerManager _playerManager;
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<ProgressBarState>(
-      valueListenable: _playerManager.progressNotifier,
-      builder: (BuildContext context, ProgressBarState value, Widget? child){
-        return ProgressBar(
-          progress: value.current,
-          buffered: value.buffered,
-          total: value.total,
-          onSeek : _playerManager.seek,
-        );
-      },
-    );
-  }
-}
-
-class PlayBtn extends StatelessWidget {
-
-  const PlayBtn({
-    required PlayerManager playerManager,
-  }) : _playerManager = playerManager;
-
-  final PlayerManager _playerManager;
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<PlayingButtonState>(
-      valueListenable: _playerManager.playingButtonNotifier,
-      builder: (BuildContext context, PlayingButtonState value, Widget? child) {
-        switch (value) {
-          case PlayingButtonState.loading:
-            return Container(
-              margin: const EdgeInsets.all(8.0),
-              width: 32.0,
-              height: 32.0,
-              child: const CircularProgressIndicator(),
-            );
-          case PlayingButtonState.paused:
-            return IconButton(
-              icon: const Icon(Icons.play_arrow),
-              iconSize: 32.0,
-              onPressed: _playerManager.play,
-            );
-          case PlayingButtonState.playing:
-            return IconButton(
-              icon: const Icon(Icons.pause),
-              iconSize: 32.0,
-              onPressed: _playerManager.pause,
-            );
-        }
-      },
-    );
-  }
-}
-
-class LoopModeBtn extends StatelessWidget {
-
-  const LoopModeBtn({
-    required PlayerManager playerManager,
-  }) : _playerManager = playerManager;
-
-  final PlayerManager _playerManager;
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<LoopMode>(
-      valueListenable: _playerManager.loopModeButtonNotifier,
-      builder: (BuildContext context, LoopMode value, Widget? child) {
-        switch (value) {
-          case LoopMode.off:
-            return IconButton(
-              icon: const Icon(Icons.repeat,color: Colors.grey,),
-              iconSize: 32.0,
-              onPressed: (){_playerManager.setLoopMode(LoopMode.all);},
-            );
-          case LoopMode.all:
-            return IconButton(
-              icon: const Icon(Icons.repeat),
-              iconSize: 32.0,
-              onPressed: (){_playerManager.setLoopMode(LoopMode.one);},
-            );
-          case LoopMode.one:
-            return IconButton(
-              icon: const Icon(Icons.repeat_one),
-              iconSize: 32.0,
-              onPressed: (){_playerManager.setLoopMode(LoopMode.off);},
-            );
-        }
-      },
-    );
-  }
-}
-
-class ShuffleBtn extends StatelessWidget {
-
-  const ShuffleBtn({
-    required PlayerManager playerManager,
-  }) : _playerManager = playerManager;
-
-  final PlayerManager _playerManager;
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<bool>(
-      valueListenable: _playerManager.shuffleButtonNotifier,
-      builder: (BuildContext context, bool value, Widget? child) {
-        return value ?
-          IconButton(
-            icon: const Icon(Icons.shuffle),
-            iconSize: 32.0,
-            onPressed: (){_playerManager.setShuffleModeEnabled(false);},
-          )
-         :
-         IconButton(
-            icon: const Icon(Icons.shuffle,color: Colors.grey,),
-            iconSize: 32.0,
-            onPressed: (){_playerManager.setShuffleModeEnabled(true);},
-         );
-      }
-    );
-  }
-}
-
-class _SpeedButton extends StatelessWidget {
-  const _SpeedButton({
-    required PlayerManager playerManager,
-  }) : _playerManager = playerManager;
-
-  final PlayerManager _playerManager;
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<double>(
-      valueListenable: _playerManager.speedNotifier,
-      builder: (BuildContext context, double value, Widget? child) {
-        return PopupMenuButton<double>(
-          icon: Icon(Icons.speed),
-          initialValue: value,
-          itemBuilder: (BuildContext context) {
-            return <PopupMenuEntry<double>>[
-              PopupMenuItem<double>(
-                value: 0.5,
-                child: Text('0.5x'),
-              ),
-              PopupMenuItem<double>(
-                value: 1.0,
-                child: Text('1.0x'),
-              ),
-              PopupMenuItem<double>(
-                value: 1.5,
-                child: Text('1.5x'),
-              ),
-              PopupMenuItem<double>(
-                value: 2.0,
-                child: Text('2.0x'),
-              ),
-            ];
-          },
-          onSelected: (double newSpeed) {
-            _playerManager.setSpeed(newSpeed);
-          },
-        );
-      }
-    );
-  }
-}
-
-class FavoriteButton extends StatefulWidget{
-
-  final Music music;
-
-  const FavoriteButton({super.key,required this.music});
-
-  @override
-  State<StatefulWidget> createState() {
-    return _FavoriteShoppingButton();
-  }
-}
-
-class _FavoriteShoppingButton extends State<FavoriteButton>{
-
-  late Future<bool> isFavorite;
-  late Key _favoriteKey;
-
-  @override
-  void initState() {
-    super.initState();
-    isFavorite = StorageService.isMusicInFavorite(widget.music);
-    _favoriteKey = UniqueKey();
-  }
-
-  void reload() {
-    setState(() {
-      isFavorite = StorageService.isMusicInFavorite(widget.music);
-      _favoriteKey = UniqueKey();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        FutureBuilder(
-            future: isFavorite,
-            builder: (context,result){
-              if(result.hasData){
-                return IconButton(
-                  icon: result.data! ? Icon(Icons.favorite,size: 40,) : Icon(Icons.favorite_border,size: 40,),
-                  onPressed: () async{
-                    await StorageService.toggleMusicInFavorite(widget.music);
-                    setState(() {
-                      isFavorite = StorageService.isMusicInFavorite(widget.music);
-                    });
-                  },
-                );
-              }
-              else if(result.hasError){
-                return ShowError(reload: reload, error: result.error.toString());
-              }
-              else{
-                return CircularProgressIndicator();
-              }
-            }
-        ),
-      ],
-    );
-  }
-
-
-
-}

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2985"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   width="260"
+   height="308"
+   sodipodi:docname="Free_music.svg">
+  <metadata
+     id="metadata2991">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2989" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="838"
+     id="namedview2987"
+     showgrid="false"
+     inkscape:zoom="1.0048701"
+     inkscape:cx="41.978101"
+     inkscape:cy="182.12332"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Layer"
+     style="display:inline">
+    <g
+       id="g3827"
+       transform="matrix(1.2544703,0,0,1.2690976,7.4862722,3.0080789)">
+      <circle
+         id="circle3811"
+         r="98"
+         cy="98"
+         cx="98"
+         sodipodi:cx="98"
+         sodipodi:cy="98"
+         sodipodi:rx="98"
+         sodipodi:ry="98"
+         style="fill:#000000"
+         d="m 196,98 c 0,54.12391 -43.87609,98 -98,98 C 43.876095,196 0,152.12391 0,98 0,43.876095 43.876095,0 98,0 c 54.12391,0 98,43.876095 98,98 z" />
+      <circle
+         id="circle3813"
+         r="78"
+         cy="98"
+         cx="98"
+         sodipodi:cx="98"
+         sodipodi:cy="98"
+         sodipodi:rx="78"
+         sodipodi:ry="78"
+         style="fill:#ffffff"
+         d="m 176,98 c 0,43.07821 -34.92179,78 -78,78 -43.07821,0 -78,-34.92179 -78,-78 0,-43.07821 34.92179,-78 78,-78 43.07821,0 78,34.92179 78,78 z" />
+      <circle
+         id="circle3815"
+         r="55"
+         cy="98"
+         cx="98"
+         sodipodi:cx="98"
+         sodipodi:cy="98"
+         sodipodi:rx="55"
+         sodipodi:ry="55"
+         style="fill:#000000"
+         d="m 153,98 c 0,30.37566 -24.62434,55 -55,55 -30.375661,0 -55,-24.62434 -55,-55 0,-30.375661 24.624339,-55 55,-55 30.37566,0 55,24.624339 55,55 z" />
+      <circle
+         id="circle3817"
+         r="30"
+         cy="98"
+         cx="98"
+         sodipodi:cx="98"
+         sodipodi:cy="98"
+         sodipodi:rx="30"
+         sodipodi:ry="30"
+         style="fill:#ffffff"
+         d="m 128,98 c 0,16.56854 -13.43146,30 -30,30 -16.568542,0 -30,-13.43146 -30,-30 0,-16.568542 13.431458,-30 30,-30 16.56854,0 30,13.431458 30,30 z" />
+      <rect
+         id="rect3819"
+         height="25"
+         width="45"
+         y="85"
+         x="115"
+         style="fill:#ffffff" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Layer#1"
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       style="font-size:226.97874451px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="145.78331"
+       y="302.52032"
+       id="text3769"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3771"
+         x="145.78331"
+         y="302.52032">♪</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:15;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 67.769437,220.20242 C 190.75875,32.237655 193.07929,34.558215 193.07929,34.558215"
+       id="path2999"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

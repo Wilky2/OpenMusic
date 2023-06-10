@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../model/Music.dart';
+import '../../../model/Music.dart';
 import 'PlayList.dart';
 
 class Track extends StatefulWidget{

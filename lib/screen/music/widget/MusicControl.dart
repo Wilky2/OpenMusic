@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
-import 'PlayerManager.dart';
+import '../Services/PlayerManager.dart';
 
 class MusicControl extends StatelessWidget {
   const MusicControl({

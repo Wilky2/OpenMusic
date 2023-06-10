@@ -3,15 +3,15 @@ import 'package:marquee/marquee.dart';
 
 class OverflowTitle extends StatelessWidget {
   final String text;
-  final TextStyle musicTitleStyle;
+  final TextStyle titleStyle;
 
-  const OverflowTitle({required this.text, this.musicTitleStyle=const TextStyle(fontSize: 30, fontWeight: FontWeight.bold,)});
+  const OverflowTitle({required this.text, this.titleStyle=const TextStyle(fontSize: 30, fontWeight: FontWeight.bold,)});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        final textSpan = TextSpan(text: text, style: musicTitleStyle);
+        final textSpan = TextSpan(text: text, style: titleStyle);
         final textPainter = TextPainter(
           text: textSpan,
           textDirection: TextDirection.ltr,
@@ -24,7 +24,7 @@ class OverflowTitle extends StatelessWidget {
             height: 40,
             child: Marquee(
               text: text,
-              style: musicTitleStyle,
+              style: titleStyle,
               scrollAxis: Axis.horizontal,
               crossAxisAlignment: CrossAxisAlignment.start,
               blankSpace: 20,
@@ -39,7 +39,7 @@ class OverflowTitle extends StatelessWidget {
         } else {
           return Text(
             text,
-            style: musicTitleStyle,
+            style: titleStyle,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           );
