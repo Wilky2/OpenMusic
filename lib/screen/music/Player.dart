@@ -108,7 +108,7 @@ class _PlayerState extends State<Player> {
                         onPressed: toggleSliderVisibility,
                       ),
                       Spacer(),
-                      FavoriteButton(music: value.music),
+                      FavoriteButton(key: UniqueKey(),music: value.music),
                       Spacer(),
                       SpeedButton(playerManager: widget.playerManager),
                     ],
