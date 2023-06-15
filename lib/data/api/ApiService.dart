@@ -13,7 +13,7 @@ class APIService {
   static int _pagesCreator = 1;
 
   static Future<dynamic> get(String url) async {
-    final response = await http.get(Uri.parse(url)).timeout(Duration(seconds: 30));
+    final response = await http.get(Uri.parse(url)).timeout(Duration(seconds: 60));
     return response;
   }
 
